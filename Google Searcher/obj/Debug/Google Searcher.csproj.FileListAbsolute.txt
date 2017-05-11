@@ -1,0 +1,28 @@
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\bin\Debug\Google Searcher.exe.config
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\bin\Debug\Google Searcher.exe
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\bin\Debug\Google Searcher.pdb
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher.csprojResolveAssemblyReference.cache
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\MainWindow.g.cs
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\App.g.cs
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher_MarkupCompile.cache
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher_MarkupCompile.lref
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\MainWindow.baml
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher.g.resources
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google_Searcher.Properties.Resources.resources
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher.csproj.GenerateResource.Cache
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher.exe
+G:\Github\Visual Studio 2017\Projects\Google Searcher\Google Searcher\obj\Debug\Google Searcher.pdb
+G:\Github\Google Searcher\Google Searcher\bin\Debug\Google Searcher.exe.config
+G:\Github\Google Searcher\Google Searcher\bin\Debug\Google Searcher.exe
+G:\Github\Google Searcher\Google Searcher\bin\Debug\Google Searcher.pdb
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.csprojResolveAssemblyReference.cache
+G:\Github\Google Searcher\Google Searcher\obj\Debug\MainWindow.g.cs
+G:\Github\Google Searcher\Google Searcher\obj\Debug\App.g.cs
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher_MarkupCompile.cache
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher_MarkupCompile.lref
+G:\Github\Google Searcher\Google Searcher\obj\Debug\MainWindow.baml
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.g.resources
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google_Searcher.Properties.Resources.resources
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.csproj.GenerateResource.Cache
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.exe
+G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.pdb
