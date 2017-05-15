@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Google_Searcher"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="400" ResizeMode="NoResize" WindowStyle="None">
+        Title="MainWindow" Height="300" Width="400" ResizeMode="NoResize" WindowStyle="None" PreviewKeyDown="window_PreviewKeyDown">
     <Window.Resources>
         <Storyboard x:Key="Storyboard1">
             <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(Window.WindowStyle)" Storyboard.TargetName="window">
@@ -679,7 +679,7 @@
             <TextBox x:Name="textBox" HorizontalAlignment="Center" Height="23" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Width="380" Margin="0,0,0,2"/>
         </Grid>
         <Label x:Name="Label_Caption" Content="Google Searcher" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" Margin="0,-5,0,0" HorizontalContentAlignment="Center" MouseLeftButtonDown="Label_Caption_MouseLeftButtonDown"/>
-        <Button x:Name="btn_Search" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="390" Margin="0,0,0,15" Height="130"/>
+        <Button x:Name="btn_Search" Content="Search" HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="390" Margin="0,0,0,15" Height="130" Click="btn_Search_Click"/>
         <Label x:Name="Label_Version" Content="Version" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="0,0,-4,-4" FontFamily="SpencersDaggers"/>
         <Label x:Name="Label_Creator" Content="Created by Zerglrisk" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,-4,-4" FontFamily="SpencersDaggers"/>
         <Button x:Name="button10" Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Width="15" BorderBrush="{x:Null}" Background="{x:Null}" Click="button10_Click"/>

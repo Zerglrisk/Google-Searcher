@@ -1,0 +1,13 @@
+G:\Github\Google Searcher\Google Searcher\bin\Release\Google Searcher.exe.config
+G:\Github\Google Searcher\Google Searcher\bin\Release\Google Searcher.exe
+G:\Github\Google Searcher\Google Searcher\bin\Release\Google Searcher.pdb
+G:\Github\Google Searcher\Google Searcher\obj\Release\MainWindow.g.cs
+G:\Github\Google Searcher\Google Searcher\obj\Release\App.g.cs
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher_MarkupCompile.cache
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher_MarkupCompile.lref
+G:\Github\Google Searcher\Google Searcher\obj\Release\MainWindow.baml
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher.g.resources
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google_Searcher.Properties.Resources.resources
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher.csproj.GenerateResource.Cache
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher.exe
+G:\Github\Google Searcher\Google Searcher\obj\Release\Google Searcher.pdb
