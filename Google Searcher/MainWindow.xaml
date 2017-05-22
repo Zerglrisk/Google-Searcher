@@ -656,7 +656,8 @@
         <Grid x:Name="grid1" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5,25,0,0">
             <Button x:Name="Browser_Left" Content="&lt;" HorizontalAlignment="Left" VerticalAlignment="Center" Width="15" Click="Browser_Left_Click"/>
             <Button x:Name="Browser_Right" Content="&gt;" HorizontalAlignment="Right" VerticalAlignment="Center" Width="15" Click="Browser_Right_Click"/>
-            <Label x:Name="Label_Browser" Content="IExplorer" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label x:Name="Label_Browser" Content="IExplorer" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDoubleClick="Label_Browser_MouseDoubleClick"/>
+            <TextBox x:Name="TextBox_Browser" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"/>
         </Grid>
         <Grid x:Name="grid2" Width="200" Height="30" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,25,0,0">
             <Button x:Name="Browser_Add" Content="Add" HorizontalAlignment="Left" VerticalAlignment="Center" Width="75" Margin="20,0,0,0" Click="Browser_Add_Click"/>
@@ -667,6 +668,7 @@
             <Button x:Name="Search_Type_Left" Content="&lt;" HorizontalAlignment="Left" VerticalAlignment="Center" Width="15" Click="Search_Type_Left_Click"/>
             <Button x:Name="Search_Type_Right" Content="&gt;" HorizontalAlignment="Right" VerticalAlignment="Center" Width="15" Click="Search_Type_Right_Click"/>
             <Label x:Name="Label_Search_Type" Content="Music" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox x:Name="TextBox_Search_Type" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Visibility="Hidden"/>
         </Grid>
         <Grid x:Name="grid" HorizontalAlignment="Right" Height="30" VerticalAlignment="Top" Width="200" Margin="0,70,0,0">
             <Button x:Name="Search_Type_Add" Content="Add" HorizontalAlignment="Right" VerticalAlignment="Center" Width="50" Margin="0,0,130,0" Click="Search_Type_Add_Click"/>

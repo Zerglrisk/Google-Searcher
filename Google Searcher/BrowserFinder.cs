@@ -8,10 +8,10 @@ public class BrowserFinder
          * Find All Installed Browser
          * http://stackoverflow.com/questions/2370732/how-to-find-all-the-browsers-installed-on-a-machine
          */
-    public Dictionary<int, Google_Searcher.MainWindow.BrowseData> getInstalledBrowser()
+    public FileIO.dataFormat getInstalledBrowser()
     {
-        Google_Searcher.MainWindow.BrowserTotal = 0;
-        Dictionary<int, Google_Searcher.MainWindow.BrowseData> data = new Dictionary<int, Google_Searcher.MainWindow.BrowseData>();
+        FileIO.dataFormat data = new FileIO.dataFormat();
+        data.item = new Dictionary<string, string>();
         
         using (RegistryKey hklm = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32))
         {
@@ -24,12 +24,10 @@ public class BrowserFinder
                                 if (webClientsRootKey.OpenSubKey(subKeyName).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command") != null)
                                 {
                                     string commandLineUri = (string)webClientsRootKey.OpenSubKey(subKeyName).OpenSubKey("shell").OpenSubKey("open").OpenSubKey("command").GetValue(null);
+                                    string browserName = (string)webClientsRootKey.OpenSubKey(subKeyName).GetValue(null);
                                     //your turn
 
-                                    Google_Searcher.MainWindow.BrowseData temp = new Google_Searcher.MainWindow.BrowseData();
-                                    temp.browserName = (string)webClientsRootKey.OpenSubKey(subKeyName).GetValue(null);
-                                    temp.exePath = commandLineUri;
-                                    data.Add(Google_Searcher.MainWindow.BrowserTotal++, temp);
+                                    data.item.Add(browserName, commandLineUri);
                                 }
         }
         return data;

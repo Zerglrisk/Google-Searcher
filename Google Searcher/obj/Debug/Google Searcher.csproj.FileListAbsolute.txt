@@ -26,3 +26,5 @@ G:\Github\Google Searcher\Google Searcher\obj\Debug\Google_Searcher.Properties.R
 G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.csproj.GenerateResource.Cache
 G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.exe
 G:\Github\Google Searcher\Google Searcher\obj\Debug\Google Searcher.pdb
+G:\Github\Google Searcher\Google Searcher\obj\Debug\EditData.g.cs
+G:\Github\Google Searcher\Google Searcher\obj\Debug\EditData.baml

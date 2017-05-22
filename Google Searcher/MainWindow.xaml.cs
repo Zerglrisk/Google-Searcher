@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Deployment;
 using System.Reflection;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Google_Searcher
 {
@@ -16,74 +18,30 @@ namespace Google_Searcher
     public partial class MainWindow : Window
     {
         //General
-        public static int BrowserTotal;
         int BrowserIndex;
-        Dictionary<int, BrowseData> Browser;
-        public static int SearchTypeTotal;
+        FileIO.dataFormat Browser;
         int SearchTypeIndex;
-        Dictionary<int, SearchData> SearchType;
-
-        public class BrowseData
-        {
-            public string browserName { get; set; }
-            public string exePath { get; set; }
-        }
-
-        public class SearchData
-        {
-            public string SearchContent { get; set; }
-            public string SearchAdditional { get; set; }
-            public List<BrowseData> AdditionalSite { get; set; }
-
-        }
-
+        FileIO.dataFormat SearchType;
+        
 
         public MainWindow()
         {
+
             InitializeComponent();
-            Browser = new BrowserFinder().getInstalledBrowser();
-            SearchType = new Dictionary<int, SearchData>();
-            string defaultBrowserName = new BrowserFinder().getDefaultBrowser();
-            foreach(var browser in Browser)
+            if(!new FileIO().InitializeFile(ref Browser, ref SearchType, ref BrowserIndex))
             {
-                string[] spstring = browser.Value.exePath.Split('\\');
-                if(defaultBrowserName.Equals(spstring[spstring.Length - 1].Substring(0, spstring[spstring.Length - 1].Length - (spstring[spstring.Length - 1].Contains('\"') ? 5 : 4)))){
-                    BrowserIndex = browser.Key;
-                    break;
-                }
+                Stream fs = new FileStream("data.dat", FileMode.Open);
+                new FileIO().Deserialize(fs, ref Browser, ref SearchType, ref BrowserIndex, ref SearchTypeIndex);
             }
-            Label_Browser.Content = Browser[BrowserIndex].browserName;
 
-            SearchData temp = new SearchData();
-            temp.SearchContent = "Music";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums -mp3free4 intitle:Index.of (mp3)  -site:spats.tokyo -site:unknownsecret.info -site:sirens.rocks"; // -xxx
-            SearchType.Add(0, temp);
-            temp = new SearchData();
-            temp.SearchContent = "Images";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums intitle:index.of (gif|jpeg|jpg|png|bmp|tif|tiff)"; // -xxx
-            SearchType.Add(1, temp);
-            temp = new SearchData();
-            temp.SearchContent = "eBook";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums intitle:index.of (/ebook|/ebooks|/book|/books)"; // -xxx
-            SearchType.Add(2, temp);
-            temp = new SearchData();
-            temp.SearchContent = "Pdf";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums intitle:index.of (chm|pdf)"; // -xxx
-            SearchType.Add(3, temp);
-            temp = new SearchData();
-            temp.SearchContent = "Text File";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums intitle:index.of (txt|rtf)"; // -xxx
-            SearchType.Add(4, temp);
-            temp = new SearchData();
-            temp.SearchContent = "Compressed File";
-            temp.SearchAdditional = " -html -htm -php -shtml -opendivx -md5 -md5sums intitle:index.of (zip|rar)"; // -xxx
-            SearchType.Add(5, temp);
-
-            SearchTypeIndex = 0;
-            SearchTypeTotal = 6;
-
-
+            Label_Browser.Content = Browser.item.ElementAt(BrowserIndex).Key;
+            Label_Search_Type.Content = SearchType.item.ElementAt(SearchTypeIndex).Key;
             Label_Version.Content = "Version " + getRunningVersion();
+            
+            
+            //Page1 page = new Page1();
+            //this.Content = page;
+
 
         }
 
@@ -106,36 +64,54 @@ namespace Google_Searcher
 
         private void Browser_Left_Click(object sender, RoutedEventArgs e)
         {
-            BrowserIndex = (BrowserIndex == 0 ? BrowserTotal - 1 : BrowserIndex - 1);
-            Label_Browser.Content = Browser[BrowserIndex].browserName;
+            BrowserIndex = (BrowserIndex == 0 ? Browser.item.Count - 1 : BrowserIndex - 1);
+            Label_Browser.Content = Browser.item.ElementAt(BrowserIndex).Key;
+            SaveFile();
         }
 
         private void Browser_Right_Click(object sender, RoutedEventArgs e)
         {
-            BrowserIndex = (BrowserIndex == BrowserTotal -1 ? 0 : BrowserIndex + 1);
-            Label_Browser.Content = Browser[BrowserIndex].browserName;
+            BrowserIndex = (BrowserIndex == Browser.item.Count - 1 ? 0 : BrowserIndex + 1);
+            Label_Browser.Content = Browser.item.ElementAt(BrowserIndex).Key;
+            SaveFile();
         }
 
         private void Browser_Add_Click(object sender, RoutedEventArgs e)
         {
-           
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string[] spstring = openFileDialog.FileName.Split('\\');
+                Browser.item.Add(spstring[spstring.Length - 1].Substring(0, spstring[spstring.Length - 1].Length - (spstring[spstring.Length - 1].Contains('\"') ? 5 : 4)), openFileDialog.FileName);
+                BrowserIndex = Browser.item.Count - 1;
+                Label_Browser.Content = Browser.item.ElementAt(BrowserIndex).Key;
+                SaveFile();
+            }
+
         }
 
         private void Browser_Delete_Click(object sender, RoutedEventArgs e)
         {
-
+            if(BrowserIndex > 0)
+            {
+                Browser.item.Remove(Browser.item.ElementAt(BrowserIndex).Key);
+                BrowserIndex = (BrowserIndex == 0 ? Browser.item.Count - 1 : BrowserIndex - 1);
+                Label_Browser.Content = Browser.item.ElementAt(BrowserIndex).Key;
+                SaveFile();
+            }
+            
         }
 
         private void Search_Type_Left_Click(object sender, RoutedEventArgs e)
         {
-            SearchTypeIndex = (SearchTypeIndex == 0 ? SearchTypeTotal - 1 : SearchTypeIndex - 1);
-            Label_Search_Type.Content = SearchType[SearchTypeIndex].SearchContent;
+            SearchTypeIndex = (SearchTypeIndex == 0 ? SearchType.item.Count - 1 : SearchTypeIndex - 1);
+            Label_Search_Type.Content = SearchType.item.ElementAt(SearchTypeIndex).Key;
         }
 
         private void Search_Type_Right_Click(object sender, RoutedEventArgs e)
         {
-            SearchTypeIndex = (SearchTypeIndex == SearchTypeTotal - 1 ? 0 : SearchTypeIndex + 1);
-            Label_Search_Type.Content = SearchType[SearchTypeIndex].SearchContent;
+            SearchTypeIndex = (SearchTypeIndex == SearchType.item.Count - 1 ? 0 : SearchTypeIndex + 1);
+            Label_Search_Type.Content = SearchType.item.ElementAt(SearchTypeIndex).Key;
         }
 
         private void Search_Type_Add_Click(object sender, RoutedEventArgs e)
@@ -156,19 +132,38 @@ namespace Google_Searcher
         {
             string str;
             str = "https://www.google.com/search?q=" + textBox.Text;
-            str += SearchType[SearchTypeIndex].SearchAdditional;
-            Process.Start(new ProcessStartInfo(Browser[BrowserIndex].exePath, str.Replace(' ', '+')));
+            str += SearchType.item.ElementAt(SearchTypeIndex).Value;
+            Process.Start(new ProcessStartInfo(Browser.item.ElementAt(BrowserIndex).Value, str.Replace(' ', '+')));
         }
 
         private void window_PreviewKeyDown(object sender, KeyEventArgs e)
         {
-            if (textBox.Focus() == false)
+            if(!textBox.IsFocused && !TextBox_Browser.IsVisible && !TextBox_Search_Type.IsVisible && ((e.Key.GetHashCode() >= 34 && e.Key.GetHashCode() <= 69) || (e.Key >= Key.NumPad0 && e.Key <=Key.NumPad9)))
             {
+                
                 textBox.Focus();
-                textBox.Text = e.Key.ToString();
+                textBox.CaretIndex = textBox.Text.Length;
             }
-            else if (textBox.Focus() == true && e.Key == Key.Enter)
+            else if(TextBox_Browser.IsVisible && !TextBox_Search_Type.IsVisible && ((e.Key.GetHashCode() >= 34 && e.Key.GetHashCode() <= 69) || (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)))
+            {
+                TextBox_Browser.Focus();
+                TextBox_Browser.CaretIndex = TextBox_Browser.Text.Length;
+            }
+
+
+            if (textBox.IsFocused && e.Key == Key.Enter)
+            {
                 btn_Search.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
+            }
+            else if(TextBox_Browser.IsFocused && e.Key == Key.Enter)
+            {
+                TextBox_Browser.Visibility = Visibility.Hidden;
+                //Browser.item.ElementAt(BrowserIndex).Key //extend dictiony로 클래스 상속 받아서 set도 추가해야함
+                Label_Browser.Visibility = Visibility.Visible;
+                Label_Browser.Content = TextBox_Browser.Text;
+                
+            }
+                
 
             if (e.Key == Key.Left)
             {
@@ -192,6 +187,22 @@ namespace Google_Searcher
         {
             return Assembly.GetExecutingAssembly().GetName().Version;
             
+        }
+
+        private void SaveFile()
+        {
+            Stream fs = new FileStream("data.dat", FileMode.Create);
+            FileIO file = new FileIO();
+            file.Serialize(Browser, fs, BrowserIndex);
+            file.Serialize(SearchType, fs, SearchTypeIndex);
+            fs.Close();
+        }
+
+        private void Label_Browser_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            TextBox_Browser.Text = Label_Browser.Content.ToString();
+            TextBox_Browser.Visibility = Visibility.Visible;
+            Label_Browser.Visibility = Visibility.Hidden;
         }
     }
 }
